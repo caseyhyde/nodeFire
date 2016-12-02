@@ -1,19 +1,19 @@
 # nodeFire with Mongo Authorization
 AngularFire with token authentication on Node backend server. This branch uses the mongoose node module with a mongo database to show an authorization example.
 
-## Get Started with nodeFire
-1. Run these commands to add the project locally:
+## Get Started with nodeFire [x]
+1. [x] Run these commands to add the project locally:
   ```shell
   $ git clone https://github.com/LukeSchlangen/nodeFire
   $ cd nodeFire
   $ npm install
   ```
 
-2. Create a free Firebase account at https://firebase.google.com
+2. [x] Create a free Firebase account at https://firebase.google.com
 
-3. Create a project from your Firebase account console
+3. [x] Create a project from your Firebase account console
 
-4. Add a connection to firebase on your front end
+4. [x] Add a connection to firebase on your front end
   1. Click the “Add Firebase to your web app” icon
   2. Copy the contents WITHOUT SCRIPT TAGS or the CDN from the resulting popup into `public/config.js`. It should look like this:
 
@@ -29,7 +29,7 @@ AngularFire with token authentication on Node backend server. This branch uses t
       firebase.initializeApp(config);
     ```
 
-5. Add a firebase service account to you node project
+5. [x] Add a firebase service account to you node project
   1. Navigate to the [Service Accounts](https://console.firebase.google.com/project/_/settings/serviceaccounts/adminsdk) tab in your project's settings page.
   2. Select your Firebase project.
   3. Copy your `databaseURL` from the `Admin SDK configuration snippet`. The line you need will look like this: `databaseURL: "https://XXXXXXXXX.firebaseio.com"`.
@@ -45,14 +45,14 @@ AngularFire with token authentication on Node backend server. This branch uses t
   6. Click the Generate New Private Key button at the bottom of the Firebase Admin SDK section of the Service Accounts tab.
   7. Rename the new JSON file to `firebase-service-account.json` and save it in the `server` folder of your application.
 
-6. Return to Firebase console. Configure Google as an authentication provider for your Firebase project.
+6. [x] Return to Firebase console. Configure Google as an authentication provider for your Firebase project.
   1. In the Firebase console for your project (you may already be there from the previous step), click "Authentication" in left panel
   2. Click "Set Up Sign-In Method" button
   3. Select "Google"
   4. Click the "edit" icon
   5. Toggle Google to `on`
 
-7. Connect the application to your database
+7. [x] Connect the application to your database
   1. Create a new mongo database or select one you already use. In `server/modules/database-config.js`, change the connection string, currently `var connectionString = 'postgres://localhost:5432/sigma';`, to match the location of your database.
   2. Copy the queries from the `database.js` file and run them in robomongo or the mongo terminal to create the necessary collections for this project. On the `db.users.insert`, be sure to add your own name and give yourself a clearance_level from 1 to 5. This will determine what data you can see:
 

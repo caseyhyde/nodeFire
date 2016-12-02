@@ -2,10 +2,13 @@ var app = angular.module("sampleApp", ["firebase"]);
 app.controller("SampleCtrl", function($firebaseAuth, $http) {
   var auth = $firebaseAuth();
   var self = this;
+  self.newUser = {};
+  var currentUser = {};
 
   // This code runs whenever the user logs in
   self.logIn = function(){
     auth.$signInWithPopup("google").then(function(firebaseUser) {
+      console.log("FIREBASE USER: ", firebaseUser);
       console.log("Firebase Authenticated as: ", firebaseUser.user.displayName);
     }).catch(function(error) {
       console.log("Authentication failed: ", error);
@@ -19,8 +22,10 @@ app.controller("SampleCtrl", function($firebaseAuth, $http) {
   auth.$onAuthStateChanged(function(firebaseUser){
     // firebaseUser will be null if not logged in
     if(firebaseUser) {
+      currentUser = firebaseUser;
       // This is where we make our call to our server
       firebaseUser.getToken().then(function(idToken){
+        console.log("ID TOKEN: ", idToken);
         $http({
           method: 'GET',
           url: '/privateData',
@@ -29,6 +34,7 @@ app.controller("SampleCtrl", function($firebaseAuth, $http) {
           }
         }).then(function(response){
           self.secretData = response.data;
+          console.log("self.secretData: ", self.secretData);
         });
       });
     } else {
@@ -44,4 +50,21 @@ app.controller("SampleCtrl", function($firebaseAuth, $http) {
       console.log('Logging the user out!');
     });
   };
+
+  self.submitNewUser = function() {
+    event.preventDefault();
+    console.log(self.newUser);
+    self.newUser = {};
+    currentUser.getToken().then(function(idToken){
+      console.log("ID TOKEN: ", idToken);
+      $http({
+        method: 'POST',
+        url: '/privateData',
+        headers: {
+          id_token: idToken
+        },
+        data: self.newUser
+
+  }
+
 });

@@ -22,6 +22,13 @@
     <h1>Hi! Log in to get some secret data from the server!</h1>
     <button ng-click="sc.logIn()">Log In</button>
     <button ng-click="sc.logOut()">Log Out</button>
+    <form>
+      <input type="text" ng-model="sc.newUser.email" placeholder="email"/>
+      <select ng-model="sc.newUser">
+        <option ng-repeat="secret in sc.secretData">{{secret.secrecyLevel}}</option>
+      </select>
+      <input type="submit" ng-click="sc.submitNewUser(sc.newUser)" />
+    </form>
     <div ng-if="sc.secretData.length === 0">Log in to get some secret data.</div>
     <table ng-if="sc.secretData.length > 0">
       <thead>
